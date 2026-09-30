@@ -74,8 +74,12 @@ what this tool exists to sit in front of.
 
 ## Status
 
-Early skeleton. Parsing and canonical output work; tree reconstruction
-(actually nesting children under parents, detecting cycles/orphans) is
-not implemented yet.
+Early. Parsing and canonical output work. `procfmt.build_tree` rebuilds
+the parent/child structure from records and reports orphans (parent pid
+missing from the input), cycles, and duplicate pids; `ProcessTree.walk()`
+yields `(depth, record)` depth-first. Unlike the normalizer, tree building
+holds every record in memory, since a parent can appear after its
+children. There is no command-line option for it yet, and no tree
+rendering.
 
 No third-party dependencies - standard library only.
